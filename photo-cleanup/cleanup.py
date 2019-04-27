@@ -21,8 +21,6 @@ if not os.path.exists(raw_path):
 if not os.path.exists(jpg_path):
     os.makedirs(jpg_path)
     
-# delete_list = []
-
 if os.path.isdir(dump_path):
     for picture in os.listdir(dump_path):
         if fnmatch.fnmatch(picture, '*.raw') or fnmatch.fnmatch(picture, '*.nef'):
@@ -34,7 +32,6 @@ if os.path.isdir(dump_path):
                     found = path
                     break
             if not found:
-                # delete_list.append(picture)
                 delete_path = os.path.join(dump_path, picture)
                 os.remove(delete_path)
                 print("Deleted: {}".format(delete_path))
@@ -42,7 +39,5 @@ if os.path.isdir(dump_path):
                 os.rename(path, os.path.join(jpg_path, picture_name + extension))
                 os.rename(os.path.join(dump_path, picture), os.path.join(raw_path, picture))
 
-    # input("Press enter to delete the following pictures:\n" + str(delete_list) + "\n")
-    # for picture in delete_list:
-    #     os.remove(os.path.join(dump_path, picture))
-    # print("Deleted")
+else:
+    print("ERROR: Cannot find directory: {}".format(dump_path))
