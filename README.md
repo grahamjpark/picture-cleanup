@@ -1,3 +1,2 @@
-# picture-cleanup
-Just a script
-to speed up my workflow when editing pictures
+# userful-scripts
+Creating a place for me to store any useful script ideas I come across
