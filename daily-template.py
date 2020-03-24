@@ -1,6 +1,7 @@
 import os
 import requests
 import datetime
+import pyperclip
 
 today = datetime.date.today()
 
@@ -16,6 +17,8 @@ headers = {"authorization": f"Bearer {os.environ['TODOIST_KEY']}"}
 response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
 for task in response.json():
-    output += "[ ] {}\n".format(task.get('content'))
+    output += " [ ] {}\n".format(task.get('content'))
 
-print(output)
+# print(output)
+
+pyperclip.copy(output)
