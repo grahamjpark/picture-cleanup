@@ -1,3 +1,12 @@
+# I use this and my text expander (espanso) to autopopulate my daily notes.
+# I use it with dropbox paper, but I imagine any note taking app would parse it.
+#
+# Example output:
+# March 25, 2020
+#  [ ] Voluptatem porro magnam modi sed sit.
+#  [ ] Porro adipisci ipsum adipisci neque.
+#  [ ] Dolorem porro porro neque est labore.
+
 import os
 import requests
 import datetime
