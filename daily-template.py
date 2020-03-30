@@ -14,7 +14,7 @@ from keys import TODOIST_KEY
 # import pyperclip
 
 today = datetime.date.today()
-output = today.strftime('%B %-d, %Y\n')
+output = today.strftime('%B %-d, %Y (%a)\n')
 
 url = "https://api.todoist.com/rest/v1/tasks"
 querystring = {"filter":"(today | overdue)"}
