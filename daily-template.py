@@ -1,18 +1,15 @@
 # I use this and my text expander (espanso) to autopopulate my daily notes.
 # I use it with dropbox paper, but I imagine any note taking app would parse it.
 #
-# Example output:
-# March 25, 2020
-#  [ ] Voluptatem porro magnam modi sed sit.
-#  [ ] Porro adipisci ipsum adipisci neque.
-#  [ ] Dolorem porro porro neque est labore.
+# Example note:
+# https://paper.dropbox.com/doc/May-4-2020-Mon--AzX8M6cMim2PoMHj5X~18gXgAQ-cMGOlRZZ2hJyhIhHKdhdo
 
 import os
 import requests
 import datetime
 import time
 from keys import TODOIST_KEY, WEATHER_KEY
-import pyperclip
+# import pyperclip
 
 LAT = "38.252666"
 LONG = "-85.758453"
@@ -104,5 +101,5 @@ output.append("""
 """)
 output.append("# Notes")
 
-# print("\n".join(output))
-pyperclip.copy("\n".join(output))
+print("\n".join(output))
+# pyperclip.copy("\n".join(output))
