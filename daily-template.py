@@ -31,9 +31,6 @@ weather_json = response.json()
 
 output.append("## Weather")
 todays_weather = weather_json["daily"][0]
-sunrise = time.strftime('%I:%M %p', time.localtime(todays_weather["sunrise"]))
-sunset = time.strftime('%I:%M %p', time.localtime(todays_weather["sunset"]))
-output.append("🌞 {} -> {}".format(sunrise, sunset))
 
 high_temp = todays_weather["temp"]["max"]
 low_temp = todays_weather["temp"]["min"]
@@ -44,6 +41,10 @@ if "rain" in todays_weather:
     output.append("💧  {} mm".format(todays_weather["rain"]))
 if "snow" in todays_weather:
     output.append("❄️   {} mm".format(todays_weather["snow"]))
+
+sunrise = time.strftime('%I:%M %p', time.localtime(todays_weather["sunrise"]))
+sunset = time.strftime('%I:%M %p', time.localtime(todays_weather["sunset"]))
+output.append("🌞 {} -> {}".format(sunrise, sunset))
 
 wind = "🌬️  {} mph".format(todays_weather["wind_speed"])
 if "wind_gust" in todays_weather:
