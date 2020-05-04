@@ -16,8 +16,28 @@ headers = {"authorization": f"Bearer {TODOIST_KEY}"}
 
 response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
+authors = {}
+no_authors = []
+
 for task in response.json():
-    output += " - {}\n".format(task.get('content'))
+    task_content = task.get('content')
+    if "-" in task_content:
+        i = task_content.rfind("-")
+        title = task_content[:i]
+        author = task_content[i+1:]
+        if author in authors:
+            authors[author].append(title)
+        else:
+            authors[author] = [title]
+    else:
+        no_authors.append(title)
+
+for author, books in authors.items():
+    output += " - {}\n".format(author)
+    for book in books:
+        output += "     - {}\n".format(book)
+for book in no_authors:
+    output += "{}\n".format(book)
 
 # print(output)
 pyperclip.copy(output)
