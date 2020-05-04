@@ -50,9 +50,10 @@ if "wind_gust" in todays_weather:
     wind += " (gusts up to {} mph)".format(todays_weather["wind_gust"])
 output.append(wind)
 
-description = "You should expect "
+description = "You should expect **"
 for desc in todays_weather["weather"]:
     description += desc["description"]
+description += "**"
 output.append(description)
 
 hourly_url = "https://forecast.weather.gov/MapClick.php?w0=t&w2=hi&w5=pop&w7=rain&w8=thunder&AheadHour=0&Submit=Submit&&FcstType=graphical&textField1={}&textField2={}&site=all&menu=1".format(LAT, LONG)
