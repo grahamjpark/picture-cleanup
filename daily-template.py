@@ -79,7 +79,6 @@ output.append("""
 | Time  | Task                                                                         |
 | ----- | ---------------------------------------------------------------------------- |
 | 5:30  | - Breakfast<br>- Bible Study<br>- Read news<br>- Email<br>- Take Indy out    |
-| 6:00  |                                                                              |
 | 6:30  |                                                                              |
 | 7:00  |                                                                              |
 | 7:30  |                                                                              |
