@@ -3,6 +3,7 @@ from requests import get
 from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
 
+
 def simple_get(url):
     """
     Attempts to get the content at `url` by making an HTTP GET request.
@@ -20,6 +21,7 @@ def simple_get(url):
         print('Error during requests to {0} : {1}'.format(url, str(e)))
         return None
 
+
 def is_good_response(resp):
     """
     Returns True if the response seems to be HTML, False otherwise.
@@ -30,12 +32,18 @@ def is_good_response(resp):
             and content_type.find('html') > -1)
 
 
-# raw_html = simple_get("https://www.namecheap.com/domains/new-tlds/explore/")
-# print(raw_html)
-# soup = BeautifulSoup(raw_html, 'html.parser')
-# print(soup.findAll("div", {"class": "gb-domains-explore__coming-tlds"}))
+def check_namecheap(domain):
+    raw_html = simple_get("https://www.namecheap.com/domains/new-tlds/explore/")
+    soup = BeautifulSoup(raw_html, 'html.parser')
 
-def check_icann():
+    coming_soon = soup.find("div", {"class": "gb-domains-explore__coming-tlds"})
+    if domain in coming_soon.text:
+        return True
+
+    return False
+
+
+def check_icann(domain):
     raw_html = simple_get("https://www.icann.org/resources/pages/listing-2012-02-25-en")
     soup = BeautifulSoup(raw_html, 'html.parser')
 
@@ -46,18 +54,26 @@ def check_icann():
     for row in tables[0].find_all("tr"):
         cells = row.find_all("td")
         tld = cells[0].get_text()
-        if tld == ".park":
+        if tld == domain:
             return True
 
     return False
 
+
 def sms_notify(message):
+    print(message)
     pass
 
 
-try:
-    if check_icann():
-        sms_notify(".park was found on icann!")
+def check_domain(domain):
+    try:
+        if check_icann(domain):
+            sms_notify("{} was found on icann!".format(domain))
+        if check_namecheap(domain):
+            sms_notify("{} was found on namecheap!".format(domain))
 
-except Exception as e:
-    sms_notify(".park check failed: {}".format(repr(e)))
+    except Exception as e:
+        sms_notify("{} check failed: {}".format(domain, repr(e)))
+
+if __name__ == "__main__":
+    check_domain(".park")
