@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 keys.py
 check-tld/tld-venv
+check-tld/secrets.py

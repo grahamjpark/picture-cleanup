@@ -2,7 +2,13 @@ from contextlib import closing
 from requests import get
 from requests.exceptions import RequestException
 from bs4 import BeautifulSoup
+from twilio.rest import Client
+import secrets
 
+# Your Account SID from twilio.com/console
+account_sid = secrets.ACCOUNT_SID
+# Your Auth Token from twilio.com/console
+auth_token  = secrets.AUTH_TOKEN
 
 def simple_get(url):
     """
@@ -61,8 +67,14 @@ def check_icann(domain):
 
 
 def sms_notify(message):
-    print(message)
-    pass
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        to="+18126600985",
+        from_="+12055518938",
+        body=message)
+
+    print("Sent SMS Message. SID = {}".format(message.sid))
 
 
 def check_domain(domain):
@@ -76,4 +88,4 @@ def check_domain(domain):
         sms_notify("{} check failed: {}".format(domain, repr(e)))
 
 if __name__ == "__main__":
-    check_domain(".park")
+    check_domain(".charity")
