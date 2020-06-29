@@ -83,8 +83,8 @@ output.append("""
 | 7:00  |                                                                              |
 | 7:30  |                                                                              |
 | 8:00  | Run / Shower                                                                 |
-| 9:00  | Job search                                                                   |
-| 9:30  | Interview Prep                                                               |
+| 9:00  |                                                                              |
+| 9:30  |                                                                              |
 | 11:30 | Read                                                                         |
 | 12:00 | Lunch                                                                        |
 | 1:00  | Work                                                                         |
