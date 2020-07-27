@@ -23,6 +23,9 @@ output = [
     )
 ]
 
+response = requests.request("GET", "https://www.affirmations.dev/")
+output.extend(["", response.json()["affirmation"], ""])
+
 weather_url = "https://api.openweathermap.org/data/2.5/onecall"
 weather_params = {
     "lat": LAT,
@@ -64,6 +67,12 @@ output.append(description)
 
 hourly_url = "https://forecast.weather.gov/MapClick.php?w0=t&w2=hi&w5=pop&w7=rain&w8=thunder&AheadHour=0&Submit=Submit&&FcstType=graphical&textField1={}&textField2={}&site=all&menu=1".format(LAT, LONG)
 output.append("[Hourly Link]({})".format(hourly_url))
+output.append("")
+
+output.append("## News")
+output.append("[Daily Pnut]({})".format("https://www.dailypnut.com/category/dailypnut/"))
+output.append("[NextDraft]({})".format("https://nextdraft.com/current/"))
+output.append("[Wikipedia Current Events]({})".format("https://en.wikipedia.org/wiki/Portal:Current_events"))
 output.append("")
 
 output.append("## Todo")
