@@ -15,7 +15,13 @@ LAT = "38.252666"
 LONG = "-85.758453"
 
 today = datetime.date.today()
-output = ["# {}".format(today.strftime('%B %-d, %Y (%a)')), "#work/daily"]
+output = [
+    "# {}".format(today.strftime('%B %-d, %Y (%a)')),
+    "#work/daily/{}/{}".format(
+        today.strftime('%Y'),
+        today.strftime('%m').lstrip("0")
+    )
+]
 
 weather_url = "https://api.openweathermap.org/data/2.5/onecall"
 weather_params = {
