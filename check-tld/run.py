@@ -70,7 +70,7 @@ def sms_notify(message):
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
-        to="+18126600985",
+        to="",
         from_="+12055518938",
         body=message)
 
