@@ -89,33 +89,18 @@ for task in response.json():
 output.append("")
 
 
-# output.append("""
-
-# ## Schedule
-# | Time  | Task                                                                         |
-# | ----- | ---------------------------------------------------------------------------- |
-# | 5:30  | - Breakfast<br>- Bible Study<br>- Read news<br>- Email<br>- Take Indy out    |
-# | 6:30  |                                                                              |
-# | 7:00  |                                                                              |
-# | 7:30  |                                                                              |
-# | 8:00  | Run / Shower                                                                 |
-# | 9:00  |                                                                              |
-# | 9:30  |                                                                              |
-# | 11:30 | Read                                                                         |
-# | 12:00 | Lunch                                                                        |
-# | 1:00  | Work                                                                         |
-# | 1:30  |                                                                              |
-# | 2:00  |                                                                              |
-# | 2:30  |                                                                              |
-# | 3:00  | Read                                                                         |
-# | 3:30  |                                                                              |
-# | 4:00  |                                                                              |
-# | 4:30  |                                                                              |
-# | 5:00  | Wrap up:<br><br>- Jot down tasks for tomorrow<br>- Complete tasks on todoist |
-# | 8:00  | Get ready for bed                                                            |
-# | 8:30  | - 1SE<br>- News<br>- Read                                                    |
-# | 9:00  | Sleep                                                                        |
-# """)
+output.append("""## Schedule
+```
+9    -
+10   -
+11   -
+12   - Lunch
+1    -
+2    -
+3    -
+4    -
+```                                                                    |
+""")
 
 print("\n".join(output))
 # pyperclip.copy("\n".join(output))
