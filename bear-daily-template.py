@@ -8,6 +8,7 @@ import os
 import requests
 import datetime
 import time
+import random
 from keys import TODOIST_KEY, WEATHER_KEY
 # import pyperclip
 
@@ -23,8 +24,16 @@ output = [
     )
 ]
 
-response = requests.request("GET", "https://www.affirmations.dev/")
-output.extend(["", response.json()["affirmation"], ""])
+cust_messages = [
+]
+
+message = None
+
+if random.random() > .7:
+    message = random.choice(cust_messages)
+else:
+    message = requests.request("GET", "https://www.affirmations.dev/").json()["affirmation"]
+output.extend(["", "/{}/".format(message), ""])
 
 weather_url = "https://api.openweathermap.org/data/2.5/onecall"
 weather_params = {
@@ -71,7 +80,7 @@ output.append("")
 
 output.append("## News")
 output.append("[Daily Pnut]({})".format("https://www.dailypnut.com/category/dailypnut/"))
-output.append("[NextDraft]({})".format("https://nextdraft.com/current/"))
+# output.append("[NextDraft]({})".format("https://nextdraft.com/current/"))
 output.append("[Wikipedia Current Events]({})".format("https://en.wikipedia.org/wiki/Portal:Current_events"))
 output.append("")
 
@@ -99,7 +108,7 @@ output.append("""## Schedule
 2    -
 3    -
 4    -
-```                                                                    |
+```
 """)
 
 print("\n".join(output))
