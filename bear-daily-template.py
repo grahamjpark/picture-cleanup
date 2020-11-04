@@ -84,20 +84,6 @@ output.append("[Daily Pnut]({})".format("https://www.dailypnut.com/category/dail
 output.append("[Wikipedia Current Events]({})".format("https://en.wikipedia.org/wiki/Portal:Current_events"))
 output.append("")
 
-output.append("## Todo")
-
-todoist_url = "https://api.todoist.com/rest/v1/tasks"
-todoist_params = {"filter":"(today | overdue)"}
-headers = {"authorization": f"Bearer {TODOIST_KEY}"}
-
-response = requests.request("GET", todoist_url, data="",
-                            headers=headers, params=todoist_params)
-
-for task in response.json():
-    output.append(" - {}".format(task.get('content')))
-output.append("")
-
-
 output.append("""## Schedule
 ```
 9    -
@@ -110,6 +96,30 @@ output.append("""## Schedule
 4    -
 ```
 """)
+
+output.append("## Todo")
+
+todoist_url = "https://api.todoist.com/rest/v1/tasks"
+todoist_params = {"filter":"(today | overdue)"}
+headers = {"authorization": f"Bearer {TODOIST_KEY}"}
+
+response = requests.request("GET", todoist_url, data="",
+                            headers=headers, params=todoist_params)
+work_tasks = []
+other_tasks = []
+
+for task in response.json():
+    if task["project_id"] == 2163878749:
+        work_tasks.append(" - {}".format(task.get('content')))
+    else:
+        other_tasks.append(" - {}".format(task.get('content')))
+
+output.extend(other_tasks)
+output.append("")
+
+output.append("### Work")
+output.extend(work_tasks)
+output.append("")
 
 print("\n".join(output))
 # pyperclip.copy("\n".join(output))
