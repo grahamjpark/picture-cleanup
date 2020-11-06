@@ -85,16 +85,7 @@ output.append("[Wikipedia Current Events]({})".format("https://en.wikipedia.org/
 output.append("")
 
 output.append("""## Schedule
-```
-9    -
-10   -
-11   -
-12   - Lunch
-1    -
-2    -
-3    -
-4    -
-```
+* Event
 """)
 
 output.append("## Todo")
