@@ -10,10 +10,8 @@ import datetime
 import time
 import random
 from keys import TODOIST_KEY, WEATHER_KEY
+from config import cust_messages, LAT, LONG
 # import pyperclip
-
-LAT = "38.252666"
-LONG = "-85.758453"
 
 today = datetime.date.today()
 output = [
@@ -22,9 +20,6 @@ output = [
         today.strftime('%Y'),
         today.strftime('%m').lstrip("0")
     )
-]
-
-cust_messages = [
 ]
 
 message = None
@@ -84,7 +79,7 @@ output.append("[Daily Pnut]({})".format("https://www.dailypnut.com/category/dail
 output.append("[Wikipedia Current Events]({})".format("https://en.wikipedia.org/wiki/Portal:Current_events"))
 output.append("")
 
-output.append("""## Schedule
+output.append("""## Meetings
 * Event
 """)
 
