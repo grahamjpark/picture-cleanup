@@ -1,16 +1,12 @@
-# I use this and my text expander (espanso) to autopopulate my daily notes.
-# I use it with dropbox paper, but I imagine any note taking app would parse it.
-#
-# Example note:
-# https://paper.dropbox.com/doc/May-4-2020-Mon--AzX8M6cMim2PoMHj5X~18gXgAQ-cMGOlRZZ2hJyhIhHKdhdo
+# I pipe this to my note taking app (Bear) to populate my daily notes
 
 import os
 import requests
 import datetime
 import time
 import random
-from keys import TODOIST_KEY, WEATHER_KEY
-from config import cust_messages, LAT, LONG
+from keys import TODOIST_KEY, WEATHER_KEY, AIR_KEY
+from config import cust_messages, LAT, LONG, CITY, STATE
 # import pyperclip
 
 today = datetime.date.today()
@@ -29,6 +25,9 @@ if random.random() > .7:
 else:
     message = requests.request("GET", "https://www.affirmations.dev/").json()["affirmation"]
 output.extend(["", "/{}/".format(message), ""])
+air_url = "https://api.airvisual.com/v2/city?city={}&state={}&country=USA&key={}".format(CITY, STATE, AIR_KEY)
+response = requests.request("GET", air_url, data="", params={})
+pollution_json = response.json()["data"]["current"]["pollution"]
 
 weather_url = "https://api.openweathermap.org/data/2.5/onecall"
 weather_params = {
@@ -62,6 +61,7 @@ wind = "🌬️  {} mph".format(todays_weather["wind_speed"])
 if "wind_gust" in todays_weather:
     wind += " (gusts up to {} mph)".format(todays_weather["wind_gust"])
 output.append(wind)
+output.append("😷 {} AQI".format(pollution_json["aqius"]))
 
 description = "You should expect *"
 for desc in todays_weather["weather"]:
